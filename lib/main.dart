@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_meedu_videoplayer/init_meedu_player.dart';
 import 'package:flutter_realm_test/bloc/video_bloc.dart';
 import 'package:flutter_realm_test/config/realm_config.dart';
 import 'package:flutter_realm_test/controller/login/login_bloc.dart';
 import 'package:flutter_realm_test/controller/realm/realm_bloc.dart';
 import 'package:flutter_realm_test/controller/register/register_bloc.dart';
-import 'package:flutter_realm_test/screens/video_full_screen.dart';
-import 'package:media_kit/media_kit.dart';
+import 'package:flutter_realm_test/screens/meedu_video_screen.dart';
+// import 'package:media_kit/media_kit.dart';
 import 'package:realm/realm.dart' as realm;
 
 void main() {
-  // RealmConfig.instance.localConfiguration();
+  RealmConfig.instance.localConfiguration();
   RealmConfig.instance.app = realm.App(
     realm.AppConfiguration('application-0-gcnnn'),
   );
   WidgetsFlutterBinding.ensureInitialized();
-  MediaKit.ensureInitialized();
+  // MediaKit.ensureInitialized();
+  initMeeduPlayer(androidUseFVP: false);
   runApp(const MyApp());
 }
 
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           hoverColor: Colors.white,
         ),
-        home: const VideoFullScreen(),
+        home: const MeeduVideoScreen(),
       ),
     );
   }
